@@ -19,7 +19,7 @@ default: &default
   encoding: unicode
   # For details on connection pooling, see rails configuration guide
   # http://guides.rubyonrails.org/configuring.html#database-pooling
-  username: mjcan
+  username: ubuntu
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   password: root
 
@@ -83,5 +83,4 @@ test:
 production:
   <<: *default
   database: RubyBelt_production
-  username: RubyBelt
   password: <%= ENV['BeltReviewer_DATABASE_PASSWORD'] %>
