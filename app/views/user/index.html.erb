@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+    <header>
+        <% if flash[:errors] %>
+            <% flash[:errors].each do |e| %>
+            <p id="error"><%= e %></p>  
+            <% end %>
+        <% end %>
+        <div id="header_container">
+                <h2>Hello, <%= @user.name %></h2>
+                <a href="/logout" class='btn btn-default'>Logout</a>
+                <a href="/users" class='btn btn-default'>All Users</a>
+        </div>
+    </header>
+    <body>
+    	<div>
+    		<p>Here is your description</p>
+    		<p><%= @user.description%></p>
+    	</div>
+    	<div>
+    		<p>Your Professionial Network</p>
+        		<% @connect.each do |person| %>
+        			 <a href="/users/<%=person.id%>"><%= person.user.name%></a>
+                     <a href="/delete/<%=person.user_id%>">delete</a>
+        		<% end %>
+    	</div>
+    	<div>
+    		<p>Invitaions:</p>
+    		<p>The following people asked you to be in their network.</p>
+            <div>
+                <div>
+                    <p>Name</p>
+
+                    <% @invite.each do |person| %>
+                            <a href="/users/<%=person.id%>"><%= person.user.name%></a>
+                        
+                    <% end %>
+                </div>
+                <div>
+                    <p>Action</p>
+                      <% @invite.each do |person| %>
+                            <a href="/accept/<%=person.user_id%>">accept</a>
+                            <a href="/ignore/<%=person.user_id%>">ignore</a>
+                    <% end %>
+                </div>
+    		</div>
+    	</div>
+    </body>
+</html>

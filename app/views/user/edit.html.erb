@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+    <header>
+        <% if flash[:errors] %>
+            <% flash[:errors].each do |e| %>
+            <p id="error"><%= e %></p>  
+            <% end %>
+        <% end %>
+        <div id="header_container">
+                <a href="/profile">My Profile</a>
+                <br>
+                <a href="/logout">Logout</a>
+        </div>
+    </header>
+    <body>
+        <div class="post_group">
+            <p>Users you may want to connect with:</p>
+                <p display: inline-block>Name</p>
+                <% @users.each do |person| %>
+                    <% unless person.id == @user.id %>
+                            <a href="/users/<%=person.id%>" class='btn btn-default'><%= person.name %></a>
+                    <% end %>
+                <% end %>
+            </div>
+            <div>            
+                <p display: inline-block>Action</p>
+                <% @users.each do |person| %>
+                    <% unless person.id == @user.id %>
+                        <a href="/invite/<%=person.id%>" class='btn btn-default'>Connect</a>
+                    <% end %>
+                <% end %>
+            </div>
+        </div>  
+    </body>
+</html>
